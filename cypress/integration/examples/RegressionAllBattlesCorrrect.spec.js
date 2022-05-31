@@ -7,7 +7,7 @@ context("COVID19 Battles", () => {
       cy.get("#login").click()  
     });
 
-it("Complete a Challenge", () => {
+it("Complete All Battles Challenge successfully and view leaderboard", () => {
 
     cy.get('#worrior_username').type("testuser");
     cy.get('#worrior_pwd').type("password");
@@ -78,7 +78,7 @@ it("Complete a Challenge", () => {
 
     //check leaderboard
 
-    cy.contains("testuser1").should('be.visible');
+    cy.contains("testuser").should('be.visible');
 
 
   });

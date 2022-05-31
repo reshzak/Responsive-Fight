@@ -4,11 +4,16 @@ context("COVID19 Battles", () => {
     beforeEach(() => {
       //cy.visit("http://localhost:8080");
       cy.visit('https://responsivefight.herokuapp.com')  
+      cy.get("#login").click()  
     });
 
-it("Complete a Challenge", () => {
-    cy.login('testuser1','password')
-    cy.get('#start').click()
+it("Complete different type of Challenge", () => {
+    cy.get('#worrior_username').type("testuser");
+    cy.get('#worrior_pwd').type("password");
+    cy.get("#warrior").click();
+    cy.get('#login_title').should('be.visible');
+    cy.get("#start").click()  
+
     cy.get("#bus").click();  
     cy.get("#bus_timer_start").click();
     cy.intercept("GET", "/api/fetchquestion?*");
