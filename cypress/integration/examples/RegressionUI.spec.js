@@ -3,22 +3,33 @@
 context("COVID19 Battles", () => {
     beforeEach(() => {
       //cy.visit("http://localhost:8080");
-      cy.visit('https://responsivefight.herokuapp.com')  
+      cy.visit('https://responsivefight.herokuapp.com') 
+      cy.get("#login").click() 
     });
   
     it("correct login",() => {
-      cy.login('testuser','password')
-      cy.get('#start').should('be.visible')
+      //cy.login('testuser','password')
+    
+      cy.get('#worrior_username').type("testuser");
+      cy.get('#worrior_pwd').type("password");
+      cy.get("#warrior").click();
+      cy.get('#start').should('be.visible');
     })
     
     it("empty password",() => {
-      cy.login('testuser',' ')
-      cy.get('#login_popup').should('be.visible')
+      //cy.login('testuser',' ')
+      cy.get('#worrior_username').type("testuser");
+      cy.get('#worrior_pwd').type(" ");
+      cy.get("#warrior").click();
+      cy.get('#login_popup').should('be.visible');
     })
   
     it("invalid user id password combination",() => {
-      cy.login('testuser','invalidpwd')
-      cy.get('#login_popup').should('be.visible')
+      //cy.login('testuser','invalidpwd')
+      cy.get('#worrior_username').type("testuser");
+      cy.get('#worrior_pwd').type(" invalidpassword");
+      cy.get("#warrior").click();
+      cy.get('#login_popup').should('be.visible');
     })
   
   /*
@@ -79,12 +90,15 @@ context("COVID19 Battles", () => {
     });*/
   
     it("Verify UI", () => {
-      cy.login('testuser','password');
-      cy.get('#start').click();
-      cy.get('#welcome_text').should('be.visible').contains("Welcome");
-      cy.get('#quarantine_area_img').should("be.visible");
-      cy.get('#news').contains("Enter at your own risk?");
-      cy.get('#world_img').should('be.visible');
+    cy.get('#worrior_username').type("testuser");
+    cy.get('#worrior_pwd').type("password");
+    cy.get("#warrior").click();
+    cy.get('#login_title').should('be.visible');
+    cy.get("#start").click()
+    cy.get('#welcome_text').should('be.visible').contains("Welcome");
+    //cy.get('#quarantine_area_img').should("be.visible");
+    cy.get('#news').contains("Enter at your own risk?");
+    //cy.get('#world_img').should('be.visible');
   
     });
   

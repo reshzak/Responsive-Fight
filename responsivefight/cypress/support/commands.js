@@ -25,16 +25,16 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false
-  })
+  // returning false here prevents Cypress from
+  // failing the test
+  return false
+})
 
-  Cypress.Commands.add("login", (userid,password)=> {
-    cy.visit('https://responsivefight.herokuapp.com')
-    cy.get("#login").click();
-    cy.get("#worrior_username").type(userid);
-    cy.get("#worrior_pwd").type(password);
-    cy.get("#warrior").click();
+Cypress.Commands.add("login", (userid,password)=> {
+  cy.visit('https://responsivefight.herokuapp.com')
+  cy.get("#login").click();
+  cy.get("#worrior_username").type(userid);
+  cy.get("#worrior_pwd").type(password);
+  cy.get("#warrior").click();
 
-  })
+})
